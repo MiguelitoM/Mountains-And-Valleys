@@ -8,22 +8,23 @@ The goal is to build a set of Python functions that allow analysis of a rectangu
 
 The program identifies:
 - Mountain chains (connected intersections occupied by mountains)
-- Valleys (free intersections adjacent to a mountain or its chain)
+- Valleys (connected free intersections adjacent to mountains)
 - Connections between intersections
 - Overall structure of the territory
 
-## 🧱 Territory Structure
+---
 
-- The **territory** is represented as a tuple of tuples of integers:
-  - `1` → Mountain
-  - `0` → Free intersection
+## 🗺️ Key Concepts
 
-- Each **intersection** is a tuple like `('A', 1)`, where:
-  - `'A'` is the vertical path (from `'A'` to `'Z'`)
-  - `1` is the horizontal path (from `1` to `99`)
+### 📌 Territory
 
-### Example of a 5x4 territory:
+A **territory** is a rectangular grid formed by the intersections of:
+- Vertical paths (labeled `'A'` to `'Z'`)
+- Horizontal paths (numbered from `1` to `99`)
 
+Each intersection is either **occupied by a mountain (1)** or **free (0)**.
+
+📦 Internal representation:
 ```python
 territory = (
     (0,1,0,0),
@@ -34,7 +35,26 @@ territory = (
 )
 ```
 
-This corresponds to:
+### 📌 Intersection
+
+An **intersection** is a tuple with:
+- A vertical identifier (e.g., `'A'`)
+- A horizontal number (e.g., `2`)
+
+Example: `('C', 3)` refers to column `'C'` and row `3`.
+
+🧭 The reading order of the grid is from **left to right**, then **bottom to top**.
+
+### 📌 Mountain Chains and Valleys
+
+- A **mountain chain** is a group of connected intersections occupied by mountains.
+- A **valley** is a set of connected free intersections adjacent to a mountain or to any mountain in a chain.
+
+---
+
+## 🔍 Visual Example
+
+Territory with mountains at intersections A2, C3, and D1:
 
 ```
   A B C D E
@@ -45,27 +65,39 @@ This corresponds to:
   A B C D E
 ```
 
-## ⚙️ Key Functions
+- There are **two mountain chains**:
+  - One with a single mountain at `('C', 3)`
+  - One connecting `('A', 2)` and `('D', 1)` via other mountain intersections
+- The **valleys** are the free intersections directly adjacent to these mountains
 
-The program includes functions to:
-
-- Validate the territory and its intersections
-- Get adjacent intersections
-- Determine if two intersections are connected
-- Find the last intersection in the territory
-- Convert the territory into a string representation
-- Identify mountain chains and valleys
+---
 
 ## ▶️ How to Run
 
-Run the Python file containing the implemented functions:
+To execute your code:
 
 ```bash
 python3 projeto.py
 ```
 
-No external libraries are required. Only built-in Python 3 features are used.
+## ✅ Running Tests
+
+If you have unit tests (using `pytest`), you can run them as follows:
+
+### 1. Install pytest
+
+```bash
+pip3 install pytest
+```
+
+### 2. Run tests
+
+```bash
+pytest
+```
+
+Make sure your test file is named like `test_projeto.py` and is in the same directory.
 
 ---
 
-> A small but complete program to explore spatial connectivity and logical structures on a grid using pure Python.
+> A compact Python program to explore connectivity and structure in grid systems — with mountains, valleys, and logical exploration.
