@@ -1,5 +1,5 @@
 
-## Mountains and Valleys ⛰
+## ⛰ Mountains and Valleys 
 
 ### Territory 
 A territory is defined as a rectangular grid with **N vertical paths** (labelled with letters from A to Z) and **M horizontal paths** (labelled with numbers from 1 to 99).  
@@ -12,9 +12,7 @@ Occupied or free intersections are said to be **connected** if there is a path b
 - A **mountain chain** is a group of connected, occupied intersections that are not linked to any other mountain.  
 - A **valley** consists of all free intersections adjacent to at least one mountain in a given chain.
 
----
-
-### Tests
+## 🧪 Tests
 
 Automated tests are provided using the `pytest` framework.
 
