@@ -1,103 +1,47 @@
-# 🏔️ Mountains and Valleys
 
-This project was developed as part of the course *Fundamentals of Programming* at Técnico Lisboa.
+## Mountains and Valleys
 
-## 🧠 Objective
-
-The goal is to build a set of Python functions that allow analysis of a rectangular grid-like territory. The territory is composed of intersections between vertical and horizontal paths. Each intersection may or may not contain a mountain.
-
-The program identifies:
-- Mountain chains (connected intersections occupied by mountains)
-- Valleys (connected free intersections adjacent to mountains)
-- Connections between intersections
-- Overall structure of the territory
+This project focuses on developing a set of Python functions to obtain and manipulate information about a **rectangular territory** composed of **intersections between vertical and horizontal paths**. Some of these intersections may be occupied by **mountains**, while others remain free, forming patterns of **mountain chains** and **valleys**.
 
 ---
 
-## 🗺️ Key Concepts
+### Territory
 
-### 📌 Territory
-
-A **territory** is a rectangular grid formed by the intersections of:
-- Vertical paths (labeled `'A'` to `'Z'`)
-- Horizontal paths (numbered from `1` to `99`)
-
-Each intersection is either **occupied by a mountain (1)** or **free (0)**.
-
-📦 Internal representation:
-```python
-territory = (
-    (0,1,0,0),
-    (0,0,0,0),
-    (0,0,1,0),
-    (1,0,0,0),
-    (0,0,0,0)
-)
-```
-
-### 📌 Intersection
-
-An **intersection** is a tuple with:
-- A vertical identifier (e.g., `'A'`)
-- A horizontal number (e.g., `2`)
-
-Example: `('C', 3)` refers to column `'C'` and row `3`.
-
-🧭 The reading order of the grid is from **left to right**, then **bottom to top**.
-
-### 📌 Mountain Chains and Valleys
-
-- A **mountain chain** is a group of connected intersections occupied by mountains.
-- A **valley** is a set of connected free intersections adjacent to a mountain or to any mountain in a chain.
+A territory is represented as a **rectangular structure**, made up of a number of vertical paths (identified by uppercase letters from A to Z) and horizontal paths (identified by integers from 1 to 99). Each point where a vertical path crosses a horizontal one is called an **intersection**, which may be **occupied (1)** or **free (0)**.
 
 ---
 
-## 🔍 Visual Example
+### Intersections
 
-Territory with mountains at intersections A2, C3, and D1:
-
-```
-  A B C D E
-4 . . . . .
-3 . . X . .
-2 X . . . .
-1 . . . X .
-  A B C D E
-```
-
-- There are **two mountain chains**:
-  - One with a single mountain at `('C', 3)`
-  - One connecting `('A', 2)` and `('D', 1)` via other mountain intersections
-- The **valleys** are the free intersections directly adjacent to these mountains
+Intersections are denoted by pairs such as `('B', 3)` and can be validated, ordered, or tested for occupation. Two intersections are **adjacent** if they share a direct horizontal or vertical path. The reading order of intersections is always from **left to right and bottom to top**.
 
 ---
 
-## ▶️ How to Run
+### Mountain Chains and Valleys
 
-To execute your code:
+Two occupied intersections are connected if there is a continuous path between them through other adjacent occupied intersections. The set of all such connected intersections forms a **mountain chain**.
 
+Similarly, a group of connected free intersections forms a **chain of free intersections**. The **valley** of a mountain is the set of free intersections that are adjacent to it or to other mountains in the same chain.
+
+---
+
+### Examples
+
+Several visual and textual examples are provided in the project statement (see PDF) to illustrate how to construct and represent territories, detect chains, and identify valleys.
+
+---
+
+### Tests
+
+To ensure the correctness of the functions, automated tests are provided using the `pytest` framework.
+
+1. Install the testing module:
 ```bash
-python3 projeto.py
+pip install pytest
 ```
 
-## ✅ Running Tests
-
-If you have unit tests (using `pytest`), you can run them as follows:
-
-### 1. Install pytest
-
+2. Run the available tests:
 ```bash
-pip3 install pytest
+pytest tests.py
+pytest extra_tests.py
 ```
-
-### 2. Run tests
-
-```bash
-pytest
-```
-
-Make sure your test file is named like `test_projeto.py` and is in the same directory.
-
----
-
-> A compact Python program to explore connectivity and structure in grid systems — with mountains, valleys, and logical exploration.
