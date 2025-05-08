@@ -16,7 +16,7 @@ Occupied or free intersections are said to be **connected** if there is a path b
 
 ### Tests
 
-To ensure the correctness of the functions, automated tests are provided using the `pytest` framework.
+Automated tests are provided using the `pytest` framework.
 
 1. Install the testing module:
 ```bash
